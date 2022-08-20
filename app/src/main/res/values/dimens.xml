@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeButtonMainScreen">10dp</dimen>
+    <dimen name="cardCornerRadiusButtonMainScreen">50dp</dimen>
+    <dimen name="heightButtonMainScreen">35dp</dimen>
+    <dimen name="marginButtonMainScreen">4dp</dimen>
+</resources>
