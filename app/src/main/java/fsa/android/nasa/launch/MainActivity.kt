@@ -19,10 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val stringTheme = SaveStringImpl(KEY_THEME,applicationContext).read()
-        Toast.makeText(applicationContext, stringTheme, Toast.LENGTH_SHORT).show()
-        setThemeNasa(stringTheme,this)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (savedInstanceState == null) {

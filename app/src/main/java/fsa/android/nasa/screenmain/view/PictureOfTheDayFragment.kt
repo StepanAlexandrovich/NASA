@@ -21,14 +21,13 @@ import fsa.android.nasa.R
 
 import fsa.android.nasa.databinding.FragmentPictureOfTheDayBinding
 import fsa.android.nasa.launch.MainActivity
+import fsa.android.nasa.launch.MyApp
 import fsa.android.nasa.screensettings.SettingsFragment
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayData
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayViewModel
 import fsa.android.nasa.util.*
 
 class PictureOfTheDayFragment:Fragment() {
-
-
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
 
@@ -56,6 +55,8 @@ class PictureOfTheDayFragment:Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        setThemeNasa(MyApp.getSavedTheme().read(),requireActivity() as AppCompatActivity)
+
         viewModel.getData().observe(viewLifecycleOwner) { renderData(it) }
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
         return binding.root
@@ -65,10 +66,6 @@ class PictureOfTheDayFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
-
-        //val stringTheme = SaveStringImpl(KEY_THEME,requireContext()).read()
-        //Toast.makeText(context, stringTheme, Toast.LENGTH_SHORT).show()
-        //setThemeNasa(stringTheme,requireActivity() as AppCompatActivity)
 
         viewCopy = view
 
@@ -102,7 +99,6 @@ class PictureOfTheDayFragment:Fragment() {
         when (item.itemId) {
 
             R.id.app_bar_fav ->   toast("Favorite")
-            //R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment.newInstance())
             R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment.newInstance())
                 ?.addToBackStack(null)
                 ?.commit()

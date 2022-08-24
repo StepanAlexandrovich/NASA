@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import fsa.android.nasa.KEY_THEME
 import fsa.android.nasa.R
 import fsa.android.nasa.databinding.FragmentSettingsBinding
+import fsa.android.nasa.launch.MyApp
 import fsa.android.nasa.stringTheme
 import fsa.android.nasa.util.SaveString
 import fsa.android.nasa.util.SaveStringImpl
@@ -37,7 +38,7 @@ class SettingsFragment:Fragment() {
     }
 
     private fun setThemeLocal(stringThemeOut:String){
-        SaveStringImpl(KEY_THEME,requireContext()).write(stringThemeOut)
+        MyApp.getSavedTheme().write(stringThemeOut)
 
         setThemeNasa(stringThemeOut,requireActivity() as AppCompatActivity)
         activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, newInstance())
