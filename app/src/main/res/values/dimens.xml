@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="DatePictureTextSizeButton">10dp</dimen>
+    <dimen name="cornerRadiusButtonMainScreen">50dp</dimen>
+    <dimen name="DatePictureHeightButton">36dp</dimen>
+    <dimen name="DatePictureMarginButton">4dp</dimen>
+</resources>
