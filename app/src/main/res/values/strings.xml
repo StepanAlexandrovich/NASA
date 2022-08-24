@@ -6,7 +6,14 @@
     <string name="favourite">favourite</string>
     <string name="settings">settings</string>
     <string name="search">Search</string>
+
     <string name="todayButton">today</string>
     <string name="yesterdayButton">yesterday</string>
     <string name="beforeYesterdayButton">beforeYesterday</string>
+
+    <string name="default_theme">DEFAULT</string>
+    <string name="material_day_theme">MATERIAL DAY</string>
+    <string name="material_night_theme">MATERIAL NIGHT</string>
+    <string name="indigo_theme">INDIGO</string>
+    <string name="pink_theme">PINK</string>
 </resources>

@@ -9,7 +9,7 @@ import fsa.android.nasa.BuildConfig
 
 import fsa.android.nasa.screenmain.model.PODRetrofitImpl
 import fsa.android.nasa.screenmain.model.PODServerResponseData
-import fsa.android.nasa.util.DateClass
+import fsa.android.nasa.util.stringDateToday
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +22,7 @@ class PictureOfTheDayViewModel (
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getData(): LiveData<PictureOfTheDayData> {
-        sendServerRequest(DateClass.stringDate(0))
+        sendServerRequest(stringDateToday())
         return liveDataForViewToObserve
     }
 

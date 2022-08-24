@@ -6,33 +6,47 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import coil.load
 
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import fsa.android.nasa.KEY_THEME
 import fsa.android.nasa.R
 
 import fsa.android.nasa.databinding.FragmentPictureOfTheDayBinding
 import fsa.android.nasa.launch.MainActivity
-import fsa.android.nasa.screenchips.ChipsFragment
+import fsa.android.nasa.screensettings.SettingsFragment
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayData
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayViewModel
-import fsa.android.nasa.util.DateClass
-import fsa.android.nasa.util.PrintVisible
+import fsa.android.nasa.util.*
 
 class PictureOfTheDayFragment:Fragment() {
+
+
     private var _binding: FragmentPictureOfTheDayBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    private var viewCopy: View? = null  // Временно
+    private var viewCopy: View? = null  // Временно ->
+    /*
+        Пытался получить доступ к bottomSheetDescription.text который лежит в bottom_sheet_layout через binding,
+        для этого пришлось прописать id в инклуде 
+        <include
+            layout="@layout/bottom_sheet_layout"
+            android:id="@+id/bottom_sheet"/>
+        
+        Но в рантайме возникает ошибка 
+        Пока не могу найти решение и временно использую viewCopy для вызова findViewById
+    */
 
+     
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(PictureOfTheDayViewModel::class.java)
     }
@@ -43,7 +57,6 @@ class PictureOfTheDayFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModel.getData().observe(viewLifecycleOwner) { renderData(it) }
-
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -52,6 +65,10 @@ class PictureOfTheDayFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
+
+        //val stringTheme = SaveStringImpl(KEY_THEME,requireContext()).read()
+        //Toast.makeText(context, stringTheme, Toast.LENGTH_SHORT).show()
+        //setThemeNasa(stringTheme,requireActivity() as AppCompatActivity)
 
         viewCopy = view
 
@@ -64,11 +81,10 @@ class PictureOfTheDayFragment:Fragment() {
 
         val listener = View.OnClickListener{
             when(it.id){
-                binding.buttonToday.id -> { viewModel.sendServerRequest(DateClass.stringDate(0)) }
-                binding.buttonYesterday.id -> { viewModel.sendServerRequest(DateClass.stringDate(-1)) }
-                binding.buttonTheDayBeforeYesterday.id -> { viewModel.sendServerRequest(DateClass.stringDate(-2)) }
+                binding.buttonToday.id -> { viewModel.sendServerRequest(stringDateToday()) }
+                binding.buttonYesterday.id -> { viewModel.sendServerRequest(stringDateYesterday()) }
+                binding.buttonTheDayBeforeYesterday.id -> { viewModel.sendServerRequest( stringDateTheDayBeforeYesterday()) }
             }
-
         }
 
         binding.buttonToday.setOnClickListener(listener)
@@ -84,8 +100,10 @@ class PictureOfTheDayFragment:Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> PrintVisible.printShort("Favorite")
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment.newInstance())
+
+            R.id.app_bar_fav ->   toast("Favorite")
+            //R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment.newInstance())
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment.newInstance())
                 ?.addToBackStack(null)
                 ?.commit()
             android.R.id.home -> {
@@ -102,31 +120,15 @@ class PictureOfTheDayFragment:Fragment() {
             is PictureOfTheDayData.Success -> {
                 val serverResponseData = data.serverResponseData
 
-                val url = serverResponseData.url
-                if (url.isNullOrEmpty()) {
-                    PrintVisible.printShort("Link is empty")
-                } else {
-                    binding.imageView.load(url) {
-                        lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
-                        placeholder(R.drawable.ic_no_photo_vector)
-                        crossfade(true)
-                    }
-                }
-
-                val explanation = serverResponseData.explanation
-                if(explanation.isNullOrEmpty()){
-                    PrintVisible.printShort("Link is empty")
-                } else {
-                    val textView: TextView = viewCopy?.findViewById(R.id.bottomSheetDescription) as TextView // ????? не разобрался как получит доступ к bottomSheetDescription используя binding
-                    textView.text = explanation
-                }
+                displayPictureOnImageView(serverResponseData.url,binding.imageView,requireContext())
+                displayTextOnTextView(serverResponseData.title, viewCopy?.findViewById(R.id.bottomSheetDescriptionHeader) as TextView)
+                displayTextOnTextView(serverResponseData.explanation, viewCopy?.findViewById(R.id.bottomSheetDescription) as TextView)
             }
             is PictureOfTheDayData.Loading -> {
-                PrintVisible.printShort("downloading...")
+                toast("downloading...")
             }
             is PictureOfTheDayData.Error -> {
-                PrintVisible.printShort(data.error.message.toString())
+                toast(data.error.message.toString())
             }
         }
     }
