@@ -4,4 +4,5 @@
     <dimen name="cornerRadiusButtonMainScreen">50dp</dimen>
     <dimen name="DatePictureHeightButton">36dp</dimen>
     <dimen name="DatePictureMarginButton">4dp</dimen>
+    <dimen name="text_view_height_settings">64dp</dimen>
 </resources>

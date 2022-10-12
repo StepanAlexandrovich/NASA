@@ -7,7 +7,7 @@ import fsa.android.nasa.util.SaveStringImpl
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        savedTheme = SaveStringImpl(KEY_THEME,this)
+        savedTheme = SaveStringImpl(KEY_THEME,"DEFAULT",this)
     }
 
     companion object {

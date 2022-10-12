@@ -34,7 +34,9 @@ class PictureOfTheDayViewModel (
         if (apiKey.isBlank()) {
             PictureOfTheDayData.Error(Throwable("You need API key"))
         } else {
-            retrofitImpl.getRetrofitImpl().getPictureOfTheDate("/planetary/apod?api_key=5cJxkUYnDHzdFK4MdxzscUJ0jE6TpvJjWNEA5OIS&date=${dateString}").enqueue(object :
+            retrofitImpl.getRetrofitImpl().getPictureOfTheDate(
+                "/planetary/apod?api_key=5cJxkUYnDHzdFK4MdxzscUJ0jE6TpvJjWNEA5OIS&date=${dateString}"
+            ).enqueue(object :
                 Callback<PODServerResponseData> {
                 override fun onResponse(
                     call: Call<PODServerResponseData>,

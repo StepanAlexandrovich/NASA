@@ -22,6 +22,7 @@ import fsa.android.nasa.R
 import fsa.android.nasa.databinding.FragmentPictureOfTheDayBinding
 import fsa.android.nasa.launch.MainActivity
 import fsa.android.nasa.launch.MyApp
+import fsa.android.nasa.navigation.ViewPager2Adapter
 import fsa.android.nasa.screensettings.SettingsFragment
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayData
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayViewModel
