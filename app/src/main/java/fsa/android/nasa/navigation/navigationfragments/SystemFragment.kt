@@ -1,4 +1,4 @@
-package fsa.android.nasa.navigation
+package fsa.android.nasa.navigation.navigationfragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
 
-class MarsFragment: Fragment(),Names {
+class SystemFragment: Fragment(), Names {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_mars,container,false)
+        return inflater.inflate(R.layout.fragment_system,container,false)
     }
 
     override fun getName(): String {
-        return "MARS"
+        return "SOLAR SYSTEM"
     }
 }

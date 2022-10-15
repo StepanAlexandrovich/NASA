@@ -30,6 +30,10 @@
         <!--        <item name="fontFamily">@font/beau_rivage_regular</item>-->
     </style>
 
+    <style name="CherryButton">
+        <item name="backgroundTint">@color/cherry</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.Nasa">
         <item name="colorPrimary">?themeColorPrimary</item>
         <item name="textColorConnected">@color/green</item>
@@ -51,6 +55,5 @@
         <item name="colorOnSecondary">@color/pink_light</item>
         <item name="themeColorPrimary">@color/pink</item>
     </style>
-
 
 </resources>

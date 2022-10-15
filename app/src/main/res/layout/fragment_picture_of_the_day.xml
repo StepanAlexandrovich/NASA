@@ -40,27 +40,15 @@
                     android:layout_height="wrap_content"
                     android:inputType="text" />
 
-                <LinearLayout
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="80dp"
 
-                    <Button
-                        style="@style/DatePictureButtonStyle"
-                        android:id="@+id/buttonToday"
-                        android:text="@string/todayButton" />
-
-                    <Button
-                        style="@style/DatePictureButtonStyle"
-                        android:id="@+id/buttonYesterday"
-                        android:text="@string/yesterdayButton" />
-
-                    <Button
-                        style="@style/DatePictureButtonStyle"
-                        android:id="@+id/buttonTheDayBeforeYesterday"
-                        android:text="@string/beforeYesterdayButton" />
-
-                </LinearLayout>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/menu_picture_of_the_day" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

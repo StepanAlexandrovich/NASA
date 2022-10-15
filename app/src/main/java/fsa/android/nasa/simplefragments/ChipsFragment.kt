@@ -1,4 +1,4 @@
-package fsa.android.nasa.screenchips
+package fsa.android.nasa.simplefragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

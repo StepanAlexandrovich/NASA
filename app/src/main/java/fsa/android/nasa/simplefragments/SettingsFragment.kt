@@ -1,4 +1,4 @@
-package fsa.android.nasa.screensettings
+package fsa.android.nasa.simplefragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import com.google.android.material.chip.Chip
 import fsa.android.nasa.R
 import fsa.android.nasa.databinding.FragmentSettingsBinding
 import fsa.android.nasa.launch.MyApp
-import fsa.android.nasa.screenchips.ChipsFragment
 import fsa.android.nasa.util.setThemeNasa
 
 class SettingsFragment:Fragment() {
@@ -47,7 +46,7 @@ class SettingsFragment:Fragment() {
 
     private fun createChipsFragment(){
         activity?.supportFragmentManager?.beginTransaction()?.
-        add(R.id.containerSettings,ChipsFragment.newInstance())?.commit()
+        add(R.id.containerSettings, ChipsFragment.newInstance())?.commit()
     }
 
     override fun onDestroyView() {

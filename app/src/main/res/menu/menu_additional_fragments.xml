@@ -4,10 +4,10 @@
         <item
             android:id="@+id/navigation_one"
             android:icon="@drawable/ic_archive"
-            android:title="NavigationViewPager2" />
+            android:title="earth mars system" />
         <item
             android:id="@+id/navigation_two"
             android:icon="@drawable/ic_send"
-            android:title="NavigationButtonNavigationLayout" />
+            android:title= "constraint education"/>
     </group>
 </menu>

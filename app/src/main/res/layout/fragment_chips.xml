@@ -141,7 +141,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/outlinedBoxTextField"
-                app:menu="@menu/menu_bottom_navigation" />
+                app:menu="@menu/menu_additional_fragments" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"

@@ -1,4 +1,4 @@
-package fsa.android.nasa.navigation
+package fsa.android.nasa.navigation.navigationfragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
 
-class EarthFragment: Fragment(),Names {
+class EarthFragment: Fragment(), Names {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

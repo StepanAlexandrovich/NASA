@@ -1,19 +1,13 @@
 package fsa.android.nasa.navigation
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import fsa.android.nasa.R
-import fsa.android.nasa.databinding.ActivityMainBinding
-import fsa.android.nasa.databinding.FragmentChipsBinding
 import fsa.android.nasa.databinding.FragmentViewPagerBinding
+import fsa.android.nasa.navigation.navigationfragments.Names
 
 class ViewPagerFragment: Fragment() {
     private var _binding: FragmentViewPagerBinding? = null

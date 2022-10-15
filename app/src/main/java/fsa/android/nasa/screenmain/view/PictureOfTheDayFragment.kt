@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,14 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import fsa.android.nasa.KEY_THEME
 import fsa.android.nasa.R
 
 import fsa.android.nasa.databinding.FragmentPictureOfTheDayBinding
 import fsa.android.nasa.launch.MainActivity
 import fsa.android.nasa.launch.MyApp
-import fsa.android.nasa.navigation.ViewPager2Adapter
-import fsa.android.nasa.screensettings.SettingsFragment
+import fsa.android.nasa.simplefragments.SettingsFragment
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayData
 import fsa.android.nasa.screenmain.viewmodel.PictureOfTheDayViewModel
 import fsa.android.nasa.util.*
@@ -34,19 +31,8 @@ class PictureOfTheDayFragment:Fragment() {
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    private var viewCopy: View? = null  // Временно ->
-    /*
-        Пытался получить доступ к bottomSheetDescription.text который лежит в bottom_sheet_layout через binding,
-        для этого пришлось прописать id в инклуде 
-        <include
-            layout="@layout/bottom_sheet_layout"
-            android:id="@+id/bottom_sheet"/>
-        
-        Но в рантайме возникает ошибка 
-        Пока не могу найти решение и временно использую viewCopy для вызова findViewById
-    */
+    private var viewCopy: View? = null
 
-     
     private val viewModel: PictureOfTheDayViewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(PictureOfTheDayViewModel::class.java)
     }
@@ -68,6 +54,24 @@ class PictureOfTheDayFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bottom_view_today -> {
+                    viewModel.sendServerRequest(stringDateToday())
+                    true
+                }
+                R.id.bottom_view_yesterday -> {
+                    viewModel.sendServerRequest(stringDateYesterday())
+                    true
+                }
+                R.id.bottom_view_before_yesterday -> {
+                    viewModel.sendServerRequest(stringDateTheDayBeforeYesterday())
+                    true
+                }
+                else -> false
+            }
+        }
+
         viewCopy = view
 
         binding.inputLayout.setEndIconOnClickListener {
@@ -76,18 +80,6 @@ class PictureOfTheDayFragment:Fragment() {
             })
         }
         setBottomAppBar(view)
-
-        val listener = View.OnClickListener{
-            when(it.id){
-                binding.buttonToday.id -> { viewModel.sendServerRequest(stringDateToday()) }
-                binding.buttonYesterday.id -> { viewModel.sendServerRequest(stringDateYesterday()) }
-                binding.buttonTheDayBeforeYesterday.id -> { viewModel.sendServerRequest( stringDateTheDayBeforeYesterday()) }
-            }
-        }
-
-        binding.buttonToday.setOnClickListener(listener)
-        binding.buttonYesterday.setOnClickListener(listener)
-        binding.buttonTheDayBeforeYesterday.setOnClickListener(listener)
     }
 
 
