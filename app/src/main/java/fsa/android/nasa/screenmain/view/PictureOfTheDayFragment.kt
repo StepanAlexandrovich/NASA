@@ -1,11 +1,14 @@
 package fsa.android.nasa.screenmain.view
 
+import android.content.ClipData
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -52,9 +55,19 @@ class PictureOfTheDayFragment:Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //view.findViewById<View>(R.id.bottom_view_before_yesterday).isSelected = true
+        view.findViewById<View>(R.id.bottom_view_today).performClick()
+        view.findViewById<View>(R.id.bottom_view_today).isPressed = true
+
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
+
+
+        //Toast.makeText(context,""+(view.findViewById<View>(R.id.bottom_view_before_yesterday)).isSelected,Toast.LENGTH_SHORT).show()
+
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
+
             when (item.itemId) {
                 R.id.bottom_view_today -> {
                     viewModel.sendServerRequest(stringDateToday())

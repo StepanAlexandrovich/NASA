@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
 import fsa.android.nasa.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import fsa.android.nasa.simplefragments.ConstraintFragment
+import fsa.android.nasa.simplefragments.CoordinatorFragment
 import fsa.android.nasa.navigation.ViewPagerFragment
+import fsa.android.nasa.simplefragments.ConstraintFragment
+import fsa.android.nasa.simplefragments.MotionFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -32,13 +34,23 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_one -> {
+                R.id.navigation_earth_mars_system -> {
                     navigateTo(ViewPagerFragment())
                     this.dismiss()
                 }
 
-                R.id.navigation_two -> {
+                R.id.navigation_constraint_education -> {
                     navigateTo(ConstraintFragment())
+                    this.dismiss()
+                }
+
+                R.id.navigation_coordinator_education -> {
+                    navigateTo(CoordinatorFragment())
+                    this.dismiss()
+                }
+
+                R.id.navigation_motion_education -> {
+                    navigateTo(MotionFragment())
                     this.dismiss()
                 }
             }
