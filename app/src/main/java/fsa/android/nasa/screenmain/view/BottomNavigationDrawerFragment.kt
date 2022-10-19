@@ -10,6 +10,7 @@ import fsa.android.nasa.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import fsa.android.nasa.simplefragments.CoordinatorFragment
 import fsa.android.nasa.navigation.ViewPagerFragment
+import fsa.android.nasa.navigation.navigationfragments.EarthFragment
 import fsa.android.nasa.simplefragments.ConstraintFragment
 import fsa.android.nasa.simplefragments.MotionFragment
 
@@ -34,7 +35,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_earth_mars_system -> {
+                R.id.navigation_book -> {
                     navigateTo(ViewPagerFragment())
                     this.dismiss()
                 }

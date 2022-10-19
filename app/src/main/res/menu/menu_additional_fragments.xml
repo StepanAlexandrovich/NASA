@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/navigation_earth_mars_system"
-            android:title="earth mars system" />
+            android:id="@+id/navigation_book"
+            android:title="book" />
         <item
             android:id="@+id/navigation_constraint_education"
             android:title= "constraint education"/>

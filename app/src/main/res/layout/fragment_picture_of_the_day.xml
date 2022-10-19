@@ -41,7 +41,7 @@
                     android:inputType="text" />
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottom_navigation_view"
+                    android:id="@+id/bottom_picture_of_the_day"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
 

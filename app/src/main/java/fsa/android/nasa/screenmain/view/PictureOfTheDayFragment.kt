@@ -56,17 +56,13 @@ class PictureOfTheDayFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //view.findViewById<View>(R.id.bottom_view_before_yesterday).isSelected = true
-        view.findViewById<View>(R.id.bottom_view_today).performClick()
+        //view.findViewById<View>(R.id.bottom_view_before_yesterday).isSelected = true  // не работает
+        view.findViewById<View>(R.id.bottom_view_today).performClick()      // не нашёл другого рабочего способа
         view.findViewById<View>(R.id.bottom_view_today).isPressed = true
 
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
-
-
-        //Toast.makeText(context,""+(view.findViewById<View>(R.id.bottom_view_before_yesterday)).isSelected,Toast.LENGTH_SHORT).show()
-
-        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+        binding.bottomPictureOfTheDay.setOnItemSelectedListener { item ->
 
             when (item.itemId) {
                 R.id.bottom_view_today -> {

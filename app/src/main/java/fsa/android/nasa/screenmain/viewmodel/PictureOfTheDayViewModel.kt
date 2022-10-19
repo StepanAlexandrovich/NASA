@@ -29,14 +29,11 @@ class PictureOfTheDayViewModel (
     fun sendServerRequest(dateString:String) {
         liveDataForViewToObserve.value = PictureOfTheDayData.Loading(null)
 
-        //val apiKey: String = BuildConfig.NASA_API_KEY   -> закомитил,так как я просто не знаю есть ли у вас BuildConfig.NASA_API_KEY
-        val apiKey = "5cJxkUYnDHzdFK4MdxzscUJ0jE6TpvJjWNEA5OIS"
-
-        if (apiKey.isBlank()) {
+        if (BuildConfig.NASA_API_KEY.isBlank()) {
             PictureOfTheDayData.Error(Throwable("You need API key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDate(
-                "/planetary/apod?api_key=${apiKey}&date=${dateString}"
+                "/planetary/apod?api_key=${BuildConfig.NASA_API_KEY}&date=${dateString}"
 
             ).enqueue(object :
                 Callback<PODServerResponseData> {

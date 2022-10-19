@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import fsa.android.nasa.navigation.navigationfragments.EarthFragment
 import fsa.android.nasa.navigation.navigationfragments.MarsFragment
 import fsa.android.nasa.navigation.navigationfragments.Names
-import fsa.android.nasa.navigation.navigationfragments.SystemFragment
+import fsa.android.nasa.navigation.navigationfragments.ExplosionFragment
 
 class ViewPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
-    private val fragments = arrayOf(EarthFragment(), MarsFragment(), SystemFragment())
+    private val fragments = arrayOf(EarthFragment(), MarsFragment(), ExplosionFragment())
 
     override fun getCount(): Int {
         return fragments.size
