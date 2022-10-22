@@ -9,11 +9,36 @@ import fsa.android.nasa.databinding.ItemHeaderBinding
 import fsa.android.nasa.databinding.ItemMarsBinding
 
 class RecyclerAdapter(
-    private var listData: List<Data>
+    private var listData: List<Pair<Data,Boolean>>,
+
+    val callbackAdd:AddItem,
+    val callbackRemove:RemoveItem,
+    val callbackMoveUp:MoveUpItem,
+    val callbackMoveDown:MoveDownItem,
+    val callbackSwitchVisibleItem: SwitchVisibleItem
 ) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
 
+    fun setListDataAdd(listData: List<Pair<Data,Boolean>>, position: Int){
+        this.listData = listData
+        notifyItemInserted(position)
+    }
+
+    fun setListDataRemove(listData: List<Pair<Data,Boolean>>,position: Int){
+        this.listData = listData
+        notifyItemRemoved(position)
+    }
+
+    fun setListDataMove(listData: List<Pair<Data,Boolean>>,position: Int,direction:Int){
+        this.listData = listData
+        notifyItemMoved(position,position + direction)
+    }
+
+    fun setListData(listData: List<Pair<Data,Boolean>>){
+        this.listData = listData
+    }
+
     override fun getItemViewType(position: Int): Int {
-        return listData[position].type
+        return listData[position].first.type
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -43,24 +68,43 @@ class RecyclerAdapter(
     }
 
     abstract class BaseViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(data: Data)
+        abstract fun bind(data: Pair<Data,Boolean>)
     }
 
     inner class EarthViewHolder(val binding: ItemEarthBinding) : BaseViewHolder(binding.root) {
-        override fun bind(data: Data){
-            binding.itemName.text = data.name
+        override fun bind(data: Pair<Data,Boolean>){
+            binding.itemName.text = data.first.name
         }
     }
 
     inner class MarsViewHolder(val binding: ItemMarsBinding) : BaseViewHolder(binding.root) {
-        override fun bind(data: Data){
-            binding.itemName.text = data.name
+        override fun bind(data: Pair<Data,Boolean>){
+            binding.itemName.text = data.first.name
+            binding.marsDescriptionTextView.visibility =
+                if(listData[layoutPosition].second) View.VISIBLE
+                else View.GONE
+
+            binding.addItemImageView.setOnClickListener{
+                callbackAdd.add(layoutPosition)
+            }
+            binding.removeItemImageView.setOnClickListener{
+                callbackRemove.remove(layoutPosition)
+            }
+            binding.moveItemUp.setOnClickListener{
+                callbackMoveUp.moveUp(layoutPosition)
+            }
+            binding.moveItemDown.setOnClickListener{
+                callbackMoveDown.moveDown(layoutPosition)
+            }
+            binding.marsImageView.setOnClickListener{
+                callbackSwitchVisibleItem.switchVisible(layoutPosition)
+            }
         }
     }
 
     inner class HeaderViewHolder(val binding: ItemHeaderBinding) : BaseViewHolder(binding.root) {
-        override fun bind(data: Data){
-            binding.itemName.text = data.name
+        override fun bind(data: Pair<Data,Boolean>){
+            binding.itemName.text = data.first.name
         }
     }
 
