@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_view_before_yesterday"
+        android:icon="@drawable/time_before_yesterday"
+        android:title="before yesterday" />
+
+    <item
+        android:id="@+id/bottom_view_yesterday"
+        android:icon="@drawable/time_yesterday"
+        android:title="yesterday" />
+
+    <item
+        android:id="@+id/bottom_view_today"
+        android:icon="@drawable/time_today"
+        android:title="today"/>
+</menu>
