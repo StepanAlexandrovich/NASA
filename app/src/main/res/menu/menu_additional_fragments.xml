@@ -13,5 +13,8 @@
         <item
             android:id="@+id/navigation_motion_education"
             android:title= "motion education"/>
+        <item
+            android:id="@+id/navigation_recycler_education"
+            android:title= "recycler education"/>
     </group>
 </menu>

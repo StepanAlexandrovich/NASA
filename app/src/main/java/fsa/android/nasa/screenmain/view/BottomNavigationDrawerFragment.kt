@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import fsa.android.nasa.simplefragments.CoordinatorFragment
 import fsa.android.nasa.navigation.ViewPagerFragment
 import fsa.android.nasa.navigation.navigationfragments.EarthFragment
+import fsa.android.nasa.recycler.RecyclerFragment
 import fsa.android.nasa.simplefragments.ConstraintFragment
 import fsa.android.nasa.simplefragments.MotionFragment
 
@@ -52,6 +53,11 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
                 R.id.navigation_motion_education -> {
                     navigateTo(MotionFragment())
+                    this.dismiss()
+                }
+
+                R.id.navigation_recycler_education -> {
+                    navigateTo(RecyclerFragment())
                     this.dismiss()
                 }
             }
