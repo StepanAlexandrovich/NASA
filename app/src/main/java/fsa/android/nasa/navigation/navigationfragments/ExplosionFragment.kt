@@ -1,12 +1,15 @@
 package fsa.android.nasa.navigation.navigationfragments
 
+import android.annotation.SuppressLint
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
 import android.transition.*
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import fsa.android.nasa.R
@@ -15,6 +18,8 @@ import fsa.android.nasa.databinding.FragmentExplosionBinding
 class ExplosionFragment: Fragment(), Names {
     private var _binding: FragmentExplosionBinding? = null
     private val binding get() = _binding!!
+
+    lateinit var viewGroup:ViewGroup
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,8 @@ class ExplosionFragment: Fragment(), Names {
         super.onViewCreated(view, savedInstanceState)
 
         binding.recyclerView.adapter = Adapter()
+
+        viewGroup = binding.explosion
     }
 
     override fun getName(): String {
@@ -45,18 +52,20 @@ class ExplosionFragment: Fragment(), Names {
                 ) as View
             )
         }
+
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.itemView.setOnTouchListener { view, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
                     explode(view)
                 } else if (event.action == MotionEvent.ACTION_UP) {
-                    binding.recyclerView.adapter = Adapter()
+                    val aScene = Scene.getSceneForLayout(binding.root,R.layout.explosion_final, requireContext());
+                    TransitionManager.go(aScene)
                 }
                 true
             }
         }
         override fun getItemCount(): Int {
-            return 32
+            return 100
         }
 
         private inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -76,6 +85,7 @@ class ExplosionFragment: Fragment(), Names {
         }
 
         TransitionManager.beginDelayedTransition(binding.explosion,explode)
+
         binding.recyclerView.adapter = null
     }
 

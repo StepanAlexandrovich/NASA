@@ -34,6 +34,10 @@
         <item name="backgroundTint">@color/cherry</item>
     </style>
 
+    <style name="EarthButton">
+        <item name="background">@drawable/bg_earth</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.Nasa">
         <item name="colorPrimary">?themeColorPrimary</item>
         <item name="textColorConnected">@color/green</item>

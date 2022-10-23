@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.databinding.FragmentEarthBinding
-import fsa.android.nasa.util.toast
-import java.time.Duration
 
 class EarthFragment: Fragment(), Names {
     private var _binding: FragmentEarthBinding? = null
@@ -32,10 +29,8 @@ class EarthFragment: Fragment(), Names {
         super.onViewCreated(view, savedInstanceState)
 
         binding.imageEarth.setOnTouchListener { view, event ->
-            //ObjectAnimator.ofFloat(binding.buttonRotation,View.TRANSLATION_X,-50.0F).setDuration(1000).start()
-
             if(event.action==MotionEvent.ACTION_DOWN){
-                animator(+675.0F,2.0F,2000)
+                animator(+675.0F,0.5F,2000)
             }else if(event.action==MotionEvent.ACTION_UP){
                 animator(-675.0F,1.0F,2000)
             }
@@ -44,7 +39,7 @@ class EarthFragment: Fragment(), Names {
 
     }
 
-     private fun animator(rotation:Float,scale:Float,duration:Long){
+    private fun animator(rotation:Float,scale:Float,duration:Long){
         ObjectAnimator.ofFloat(binding.moon,View.ROTATION,rotation).setDuration(duration).start()
         ObjectAnimator.ofFloat(binding.imageEarth,View.SCALE_X,scale).setDuration(1000).start()
         ObjectAnimator.ofFloat(binding.imageEarth,View.SCALE_Y,scale).setDuration(1000).start()

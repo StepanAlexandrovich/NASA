@@ -1,5 +1,6 @@
 package fsa.android.nasa.recycler
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,12 @@ import fsa.android.nasa.databinding.ItemMarsBinding
 
 class RecyclerAdapter(
     private var listData: List<Pair<Data,Boolean>>,
+    private val itemTouchHelperAdapter: ItemTouchHelperAdapter,
 
-    val callbackAdd:AddItem,
-    val callbackRemove:RemoveItem,
-    val callbackMoveUp:MoveUpItem,
-    val callbackMoveDown:MoveDownItem,
-    val callbackSwitchVisibleItem: SwitchVisibleItem
-) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>() {
+    val callbackItemHeaderRealization: ItemHeaderRealization,
+    val callbackItemEarthRealization: ItemEarthRealization,
+    val callbackItemMarsRealization: ItemMarsRealization
+) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(),ItemTouchHelperAdapter{
 
     fun setListDataAdd(listData: List<Pair<Data,Boolean>>, position: Int){
         this.listData = listData
@@ -67,13 +67,26 @@ class RecyclerAdapter(
         return listData.size
     }
 
-    abstract class BaseViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    abstract class BaseViewHolder(val view: View) : RecyclerView.ViewHolder(view),ItemTouchHelperViewHolder {
         abstract fun bind(data: Pair<Data,Boolean>)
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.CYAN)
+        }
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
     }
 
     inner class EarthViewHolder(val binding: ItemEarthBinding) : BaseViewHolder(binding.root) {
         override fun bind(data: Pair<Data,Boolean>){
             binding.itemName.text = data.first.name
+            binding.moveItemUp.setOnClickListener{
+                callbackItemEarthRealization.move(layoutPosition,-1)
+            }
+            binding.moveItemDown.setOnClickListener{
+                callbackItemEarthRealization.move(layoutPosition,+1)
+            }
         }
     }
 
@@ -85,27 +98,42 @@ class RecyclerAdapter(
                 else View.GONE
 
             binding.addItemImageView.setOnClickListener{
-                callbackAdd.add(layoutPosition)
+                callbackItemMarsRealization.add(layoutPosition)
             }
             binding.removeItemImageView.setOnClickListener{
-                callbackRemove.remove(layoutPosition)
+                callbackItemMarsRealization.remove(layoutPosition)
             }
             binding.moveItemUp.setOnClickListener{
-                callbackMoveUp.moveUp(layoutPosition)
+                callbackItemMarsRealization.move(layoutPosition,-1)
             }
             binding.moveItemDown.setOnClickListener{
-                callbackMoveDown.moveDown(layoutPosition)
+                callbackItemMarsRealization.move(layoutPosition,+1)
             }
             binding.marsImageView.setOnClickListener{
-                callbackSwitchVisibleItem.switchVisible(layoutPosition)
+                callbackItemMarsRealization.switchVisible(layoutPosition)
             }
         }
     }
 
     inner class HeaderViewHolder(val binding: ItemHeaderBinding) : BaseViewHolder(binding.root) {
         override fun bind(data: Pair<Data,Boolean>){
-            binding.itemName.text = data.first.name
+            // TODO пока ничего не связывает
+
+            binding.buttonCreateEarth.setOnClickListener {
+                callbackItemHeaderRealization.createEarth(layoutPosition + 1)
+            }
+            binding.buttonCreateMars.setOnClickListener {
+                callbackItemHeaderRealization.createMars(layoutPosition + 1)
+            }
         }
     }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        itemTouchHelperAdapter.onItemMove(fromPosition,toPosition)
+    }
+    override fun onItemDismiss(position: Int) {
+        itemTouchHelperAdapter.onItemDismiss(position)
+    }
+
 
 }

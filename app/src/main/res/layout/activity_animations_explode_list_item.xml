@@ -4,6 +4,6 @@
     android:layout_width="20dp"
     android:layout_height="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:srcCompat="@drawable/bg_mars" />
+    app:srcCompat="@drawable/bg_meteorite" />
 
 
