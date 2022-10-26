@@ -3,7 +3,10 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/navigation_book"
-            android:title="book" />
+            android:title="slide***" />
+        <item
+            android:id="@+id/navigation_system"
+            android:title="I love coding***" />
         <item
             android:id="@+id/navigation_constraint_education"
             android:title= "constraint education"/>

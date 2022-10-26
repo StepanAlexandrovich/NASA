@@ -1,15 +1,14 @@
 package fsa.android.nasa.screenmain.view
 
-import android.content.ClipData
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -40,6 +39,7 @@ class PictureOfTheDayFragment:Fragment() {
         ViewModelProvider.NewInstanceFactory().create(PictureOfTheDayViewModel::class.java)
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +51,7 @@ class PictureOfTheDayFragment:Fragment() {
         _binding = FragmentPictureOfTheDayBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,6 +90,9 @@ class PictureOfTheDayFragment:Fragment() {
             })
         }
         setBottomAppBar(view)
+
+        view.findViewById<TextView>(R.id.bottomSheetDescriptionHeader).typeface =
+            Typeface.createFromAsset(requireActivity().assets,"Banty Bold.ttf")
     }
 
 

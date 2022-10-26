@@ -14,6 +14,7 @@ import fsa.android.nasa.navigation.navigationfragments.EarthFragment
 import fsa.android.nasa.recycler.RecyclerFragment
 import fsa.android.nasa.simplefragments.ConstraintFragment
 import fsa.android.nasa.simplefragments.MotionFragment
+import fsa.android.nasa.simplefragments.SystemFragment
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -40,22 +41,22 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     navigateTo(ViewPagerFragment())
                     this.dismiss()
                 }
-
+                R.id.navigation_system -> {
+                    navigateTo(SystemFragment())
+                    this.dismiss()
+                }
                 R.id.navigation_constraint_education -> {
                     navigateTo(ConstraintFragment())
                     this.dismiss()
                 }
-
                 R.id.navigation_coordinator_education -> {
                     navigateTo(CoordinatorFragment())
                     this.dismiss()
                 }
-
                 R.id.navigation_motion_education -> {
                     navigateTo(MotionFragment())
                     this.dismiss()
                 }
-
                 R.id.navigation_recycler_education -> {
                     navigateTo(RecyclerFragment())
                     this.dismiss()

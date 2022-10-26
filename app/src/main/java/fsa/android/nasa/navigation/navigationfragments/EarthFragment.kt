@@ -36,7 +36,6 @@ class EarthFragment: Fragment(), Names {
             }
             true
         }
-
     }
 
     private fun animator(rotation:Float,scale:Float,duration:Long){

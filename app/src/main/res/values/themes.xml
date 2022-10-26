@@ -34,8 +34,10 @@
         <item name="backgroundTint">@color/cherry</item>
     </style>
 
-    <style name="EarthButton">
-        <item name="background">@drawable/bg_earth</item>
+    <style name="VerticalTextStyle"
+        parent="android:Widget.TextView">
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">50sp</item>
     </style>
 
     <style name="AppTheme" parent="Theme.Nasa">
