@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Nasa</string>
+    <string name="photo_of_the_day_stub">Photo of the day</string>
+    <string name="search_wiki">Найти в Википедии</string>
+    <string name="wiki_helper_text">Поищите термин в википедии</string>
+    <string name="favourite">favourite</string>
+    <string name="settings">settings</string>
+    <string name="search">Search</string>
+
+    <string name="todayButton">today</string>
+    <string name="yesterdayButton">yesterday</string>
+    <string name="beforeYesterdayButton">beforeYesterday</string>
+
+    <string name="default_theme">DEFAULT</string>
+    <string name="material_day_theme">MATERIAL DAY</string>
+    <string name="material_night_theme">MATERIAL NIGHT</string>
+    <string name="indigo_theme">INDIGO</string>
+    <string name="pink_theme">PINK</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_view_theme_choice">доступные темы</string>
+
+    <string name="lorem">text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+                         text text text text text text text text text text
+    </string>
+    <string name="large_text_mars">Марс -- четвёртая по удалённости от Солнца и седьмая по размерам планета Солнечной системы. Названа в честь Марса -- древнеримского бога войны, соответствующего древнегреческому Аресу. Иногда Марс называют «красной планетой» из-за красноватого оттенка поверхности, придаваемого ей минералом маггемитом (оксидом железа).</string>
 </resources>
