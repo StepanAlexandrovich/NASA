@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import fsa.android.nasa.R
 
 import fsa.android.nasa.databinding.FragmentPictureOfTheDayBinding
@@ -57,28 +58,24 @@ class PictureOfTheDayFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //view.findViewById<View>(R.id.bottom_view_before_yesterday).isSelected = true  // не работает
-        view.findViewById<View>(R.id.bottom_view_today).performClick()      // не нашёл другого рабочего способа
-        view.findViewById<View>(R.id.bottom_view_today).isPressed = true
-
         setBottomSheetBehavior(view.findViewById(R.id.bottom_sheet_container))
 
-        binding.bottomPictureOfTheDay.setOnItemSelectedListener { item ->
+        binding.chipToday.isEnabled = true    // не работает
+        binding.chipToday.performClick()      // не нашёл другого рабочего способа ????????????????????????????????
 
-            when (item.itemId) {
-                R.id.bottom_view_today -> {
-                    viewModel.sendServerRequest(stringDateToday())
-                    true
+        binding.chipGroupPictureOfTheDay.setOnCheckedChangeListener { chipGroup, position ->
+            chipGroup.findViewById<Chip>(position)?.let {
+                when(it.text){
+                    getString(R.string.today) -> {
+                        viewModel.sendServerRequest(stringDateToday())
+                    }
+                    getString(R.string.yesterday) -> {
+                        viewModel.sendServerRequest(stringDateYesterday())
+                    }
+                    getString(R.string.before_yesterday) -> {
+                        viewModel.sendServerRequest(stringDateTheDayBeforeYesterday())
+                    }
                 }
-                R.id.bottom_view_yesterday -> {
-                    viewModel.sendServerRequest(stringDateYesterday())
-                    true
-                }
-                R.id.bottom_view_before_yesterday -> {
-                    viewModel.sendServerRequest(stringDateTheDayBeforeYesterday())
-                    true
-                }
-                else -> false
             }
         }
 
@@ -104,13 +101,17 @@ class PictureOfTheDayFragment:Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
 
-            R.id.app_bar_fav ->   toast("Favorite")
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, SettingsFragment.newInstance())
-                ?.addToBackStack(null)
-                ?.commit()
+            R.id.app_bar_fav ->
+                activity?.let {
+                    FavoritesDrawerFragment().show(it.supportFragmentManager, "tag")
+                }
+            R.id.app_bar_settings ->
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,SettingsFragment())
+                .addToBackStack(null)
+                .commit()
             android.R.id.home -> {
                 activity?.let {
-                    BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
+                    EducationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
         }

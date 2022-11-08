@@ -10,5 +10,7 @@ fun setThemeNasa(stringThemeOut:String,activity: AppCompatActivity){
         "MATERIAL NIGHT" -> activity.setTheme(com.google.android.material.R.style.Base_V24_Theme_Material3_Light)
         "INDIGO" -> activity.setTheme(R.style.IndigoTheme)
         "PINK" -> activity.setTheme(R.style.PinkTheme)
+
+        else -> activity.setTheme(R.style.Theme_Nasa)
     }
 }

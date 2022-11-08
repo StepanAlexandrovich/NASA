@@ -6,19 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
-import fsa.android.nasa.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import fsa.android.nasa.simplefragments.CoordinatorFragment
+import fsa.android.nasa.databinding.BottomNavigationEducationBinding
 import fsa.android.nasa.navigation.ViewPagerFragment
-import fsa.android.nasa.navigation.navigationfragments.EarthFragment
 import fsa.android.nasa.recycler.RecyclerFragment
-import fsa.android.nasa.simplefragments.ConstraintFragment
-import fsa.android.nasa.simplefragments.MotionFragment
-import fsa.android.nasa.simplefragments.SystemFragment
+import fsa.android.nasa.simplefragments.*
 
-class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
+class EducationDrawerFragment : BottomSheetDialogFragment() {
 
-    private var _binding: BottomNavigationLayoutBinding? = null
+    private var _binding: BottomNavigationEducationBinding? = null
     private val binding get() = _binding!!
 
 
@@ -27,7 +23,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BottomNavigationLayoutBinding.inflate(inflater, container, false)
+        _binding = BottomNavigationEducationBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -37,12 +33,8 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navigation_book -> {
-                    navigateTo(ViewPagerFragment())
-                    this.dismiss()
-                }
-                R.id.navigation_system -> {
-                    navigateTo(SystemFragment())
+                R.id.navigation_bottom_pictures -> {
+                    navigateTo(PicturesFragment())
                     this.dismiss()
                 }
                 R.id.navigation_constraint_education -> {

@@ -2,6 +2,7 @@ package fsa.android.nasa.recycler
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import fsa.android.nasa.recycler.interfaces.ItemTouchHelperViewHolder
 
 class ItemTouchHelperCallback(private val adapter: RecyclerAdapter) :
     ItemTouchHelper.Callback() {

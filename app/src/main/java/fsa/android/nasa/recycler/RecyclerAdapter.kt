@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fsa.android.nasa.databinding.ItemEarthBinding
 import fsa.android.nasa.databinding.ItemHeaderBinding
 import fsa.android.nasa.databinding.ItemMarsBinding
+import fsa.android.nasa.recycler.interfaces.*
 
 class RecyclerAdapter(
     private var listData: List<Pair<Data,Boolean>>,
@@ -16,7 +17,7 @@ class RecyclerAdapter(
     val callbackItemHeaderRealization: ItemHeaderRealization,
     val callbackItemEarthRealization: ItemEarthRealization,
     val callbackItemMarsRealization: ItemMarsRealization
-) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(),ItemTouchHelperAdapter{
+) : RecyclerView.Adapter<RecyclerAdapter.BaseViewHolder>(), ItemTouchHelperAdapter {
 
     fun setListDataAdd(listData: List<Pair<Data,Boolean>>, position: Int){
         this.listData = listData
@@ -67,7 +68,8 @@ class RecyclerAdapter(
         return listData.size
     }
 
-    abstract class BaseViewHolder(val view: View) : RecyclerView.ViewHolder(view),ItemTouchHelperViewHolder {
+    abstract class BaseViewHolder(val view: View) : RecyclerView.ViewHolder(view),
+        ItemTouchHelperViewHolder {
         abstract fun bind(data: Pair<Data,Boolean>)
 
         override fun onItemSelected() {

@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import fsa.android.nasa.databinding.FragmentRecyclerBinding
+import fsa.android.nasa.recycler.interfaces.ItemEarthRealization
+import fsa.android.nasa.recycler.interfaces.ItemHeaderRealization
+import fsa.android.nasa.recycler.interfaces.ItemMarsRealization
+import fsa.android.nasa.recycler.interfaces.ItemTouchHelperAdapter
 
 class RecyclerFragment: Fragment() {
     private var _binding: FragmentRecyclerBinding? = null

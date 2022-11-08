@@ -41,17 +41,34 @@
                     android:layout_height="wrap_content"
                     android:inputType="text" />
 
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottom_picture_of_the_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupPictureOfTheDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:chipSpacingHorizontal="25dp">
 
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:menu="@menu/menu_picture_of_the_day" >
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/before_yesterday" />
 
-                </com.google.android.material.bottomnavigation.BottomNavigationView>
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yesterday" />
+
+                    <com.google.android.material.chip.Chip
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/chipToday"
+                        android:text="@string/today" />
+
+                </com.google.android.material.chip.ChipGroup>
+
 
             </com.google.android.material.textfield.TextInputLayout>
 

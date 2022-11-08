@@ -12,17 +12,16 @@ import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
-import fsa.android.nasa.databinding.FragmentSystemBinding
+import fsa.android.nasa.databinding.FragmentTextBinding
 import java.util.*
 
-class SystemFragment: Fragment() {
+class TextFragment: Fragment() {
 
-    private var _binding: FragmentSystemBinding? = null
+    private var _binding: FragmentTextBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var timer:Timer
@@ -31,7 +30,7 @@ class SystemFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSystemBinding.inflate(inflater, container, false)
+        _binding = FragmentTextBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,7 +54,7 @@ class SystemFragment: Fragment() {
                     system1.process()
                     system2.process()
 
-                    textAnim.process()
+                    //textAnim.process()
                 }
             }
         },0,25)
@@ -81,6 +80,9 @@ class SystemFragment: Fragment() {
         var direction = 1
         fun process(){
             view.rotation += direction
+            if(view.rotation == 360.0F){
+                view.rotation = 0.0F
+            }
         }
     }
 

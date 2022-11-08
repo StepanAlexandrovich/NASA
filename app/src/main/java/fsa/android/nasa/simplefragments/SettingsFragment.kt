@@ -11,6 +11,7 @@ import fsa.android.nasa.R
 import fsa.android.nasa.databinding.FragmentSettingsBinding
 import fsa.android.nasa.launch.MyApp
 import fsa.android.nasa.util.setThemeNasa
+import fsa.android.nasa.util.toast
 
 class SettingsFragment:Fragment() {
     private var _binding: FragmentSettingsBinding? = null
@@ -35,7 +36,6 @@ class SettingsFragment:Fragment() {
             }
         }
 
-
     }
 
     private fun setThemeLocal(stringThemeOut:String){
@@ -45,8 +45,8 @@ class SettingsFragment:Fragment() {
     }
 
     private fun createChipsFragment(){
-        activity?.supportFragmentManager?.beginTransaction()?.
-        add(R.id.containerSettings, ChipsFragment.newInstance())?.commit()
+        requireActivity().supportFragmentManager.beginTransaction().
+        replace(R.id.containerSettings, ChipsFragment()).commit()
     }
 
     override fun onDestroyView() {

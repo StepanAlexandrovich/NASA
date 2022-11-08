@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/navigation_book"
+            android:title="Slide*" />
+        <item
+            android:id="@+id/navigation_text"
+            android:title="I love coding**" />
+        <item
+            android:id="@+id/navigation_system"
+            android:title="Relax***" />
+        <item
+            android:id="@+id/navigation_tree"
+            android:title="Relax****" />
+    </group>
+</menu>

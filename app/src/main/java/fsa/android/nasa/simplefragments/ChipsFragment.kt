@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import fsa.android.nasa.databinding.FragmentChipsBinding
 import com.google.android.material.chip.Chip
+import fsa.android.nasa.databinding.FragmentChipsBinding
 import fsa.android.nasa.launch.MyApp
 
 class ChipsFragment:Fragment() {
@@ -24,6 +24,7 @@ class ChipsFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         binding.textViewThemeView.text = MyApp.getSavedTheme().read()
 

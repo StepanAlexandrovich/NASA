@@ -20,9 +20,15 @@ class PictureOfTheDayViewModel (
 ) :
     ViewModel() {
 
+    private var start = true
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun getData(): LiveData<PictureOfTheDayData> {
-        sendServerRequest(stringDateToday())
+        if(start){
+            sendServerRequest(stringDateToday())
+            start = false
+        }
+
         return liveDataForViewToObserve
     }
 
