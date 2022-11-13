@@ -1,20 +1,25 @@
 package fsa.android.nasa.animation.system.core
 
 abstract class Top (private val width:Int,private val height: Int,private val numberOfCircles:Int){
-    var pointStatic = PointStatic(width.toFloat() / 2, height.toFloat() / 2)
-    var pointsDynamic = arrayListOf<RotationRelativelyXY>()
+    val pointStatic = PointStatic(width.toFloat() / 2, height.toFloat() / 2)
+    val pointsDynamic = arrayListOf<RotationRelativelyXY>()
+    val radius = (width.toFloat())/(2*(numberOfCircles))
 
     var step = 0
 
     fun recursion(mode:String,parent: Point,speed:Int,index: Int,start:Int){
         val point = RotationRelativelyXY().apply {
-            setYRelativelyParent((start*width.toFloat())/(2*(numberOfCircles)))
+            if(start>0){
+                setRadius( radius.toInt() ).startTopRelativelyParent()
+            }else{
+                setRadius( radius.toInt() ).startBottomRelativelyParent()
+            }
             setSpeed(speed)
             setParent(parent)
         }
         pointsDynamic.add(point)
 
-        if(index<numberOfCircles - 1){
+        if(index<numberOfCircles){
             if(mode == "line"){
                 recursion(mode,point as Point,speed + 1,index + 1,start)
             }else
@@ -24,6 +29,7 @@ abstract class Top (private val width:Int,private val height: Int,private val nu
             }else
             if(mode == "tree**"){
                 recursion(mode,point as Point,speed + 2,index + 1,start)
+                recursion(mode,point as Point,speed,index + 1,start)
                 recursion(mode,point as Point,speed - 2,index + 1,start)
             }
         }

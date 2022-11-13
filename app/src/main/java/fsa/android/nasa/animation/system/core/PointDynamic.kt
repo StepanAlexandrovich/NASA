@@ -22,10 +22,10 @@ abstract class PointDynamic:Point{
         this.y[now] = y
     }
 
-    fun getXBack(): Float {
+    open fun getXBack(): Float {
         return x[next]
     }
-    fun getYBack(): Float {
+    open fun getYBack(): Float {
         return y[next]
     }
 

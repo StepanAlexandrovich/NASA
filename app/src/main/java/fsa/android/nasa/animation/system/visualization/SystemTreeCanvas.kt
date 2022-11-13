@@ -4,9 +4,9 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
-import fsa.android.nasa.animation.system.core.Top
-import fsa.android.nasa.animation.system.core.TopTreeOne
-import fsa.android.nasa.animation.system.core.TopTreeTwo
+import androidx.core.content.ContextCompat
+import fsa.android.nasa.R
+import fsa.android.nasa.animation.system.core.*
 
 class SystemTreeCanvas(context: Context?, attrs: AttributeSet?) : SystemCanvas(context, attrs) {
     enum class Mode{ EMPTY,FILLED }
@@ -40,16 +40,16 @@ class SystemTreeCanvas(context: Context?, attrs: AttributeSet?) : SystemCanvas(c
     private fun empty(canvas: Canvas){
         canvasSwitch = canvasBit
 
-        backGround(Color.BLUE)
+        backGround(ContextCompat.getColor(context, R.color.color_deepest_blue))
         allHearts(0, Color.RED)
 
         canvasSwitch = canvas
         canvas.drawBitmap(bitmap,0f,0f,null)
 
 
-        connectAllPoints(0, Color.BLACK)
+        connectAllPoints(0, Color.WHITE)
 
-        allPoints(1, Color.BLACK)
+        allPoints(1, Color.WHITE)
     }
 
     private fun filled(canvas: Canvas){

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="fsa.android.nasa">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".launch.MyApp"
@@ -17,8 +17,8 @@
         android:theme="@style/Theme.Nasa"
         tools:targetApi="31">
         <activity
-            android:name=".launch.MainActivity"
-            android:screenOrientation="portrait"
+            android:name=".SplashScreenActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true">
 
             <intent-filter>
@@ -26,14 +26,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
-            android:name=".navigation.ViewPagerFragment"
-            android:exported="true">
+            android:name=".launch.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-
+        <activity
+            android:name=".navigation.ViewPagerFragment"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ abstract class SystemCanvas(context: Context?, attrs: AttributeSet?) : View(cont
     private var numberOfPoints = 5
     lateinit var top: Top
     // drawing
-    val paint = Paint()
+    private val paint = Paint()
     lateinit var bitmap: Bitmap
     lateinit var canvasBit:Canvas
     lateinit var canvasSwitch:Canvas
@@ -43,7 +43,6 @@ abstract class SystemCanvas(context: Context?, attrs: AttributeSet?) : View(cont
     }
 
     abstract fun drawing(canvas: Canvas)
-
 
     // tools //
     fun heart(index:Int,color:Int){

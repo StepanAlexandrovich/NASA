@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import fsa.android.nasa.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import fsa.android.nasa.animation.system.core.RotationRelativelyZeroComposition
 import fsa.android.nasa.databinding.BottomNavigationFavoritesBinding
 import fsa.android.nasa.navigation.ViewPagerFragment
 import fsa.android.nasa.simplefragments.*
@@ -37,14 +38,17 @@ class FavoritesDrawerFragment : BottomSheetDialogFragment() {
                     this.dismiss()
                 }
                 R.id.navigation_text -> {
+                    RotationRelativelyZeroComposition.modeDegree()
                     navigateTo(TextFragment())
                     this.dismiss()
                 }
                 R.id.navigation_system -> {
+                    RotationRelativelyZeroComposition.modeInversion()
                     navigateTo(SystemLineFragment())
                     this.dismiss()
                 }
                 R.id.navigation_tree -> {
+                    RotationRelativelyZeroComposition.modeInversion()
                     navigateTo(SystemTreeFragment())
                     this.dismiss()
                 }

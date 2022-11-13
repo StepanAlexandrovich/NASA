@@ -1,8 +1,12 @@
 package fsa.android.nasa.animation.system.core
 
 class RotationRelativelyXY:PointDynamic() {
-    private val rotation = RotationRelativelyZero()
+    private val rotation = RotationRelativelyZeroComposition()
     private lateinit var parent: Point
+
+    fun getDistance():Int{
+        return rotation.getDistance()
+    }
 
     fun getXParent():Float{
         return parent.getX()
@@ -18,6 +22,19 @@ class RotationRelativelyXY:PointDynamic() {
 
     fun setYRelativelyParent(y:Float){
         rotation.setY(y)
+    }
+
+    fun setRadius(radius:Int):RotationRelativelyXY{
+        rotation.setRadius(radius)
+        return this
+    }
+
+    fun startTopRelativelyParent(){
+        rotation.startTop()
+    }
+
+    fun startBottomRelativelyParent(){
+        rotation.startBottom()
     }
 
     fun setSpeed(speed: Int) {
